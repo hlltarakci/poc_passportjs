@@ -67,29 +67,36 @@ The core OAuth 2.0 protocol defines four primary *grant types* used for obtainin
 <details>
 <summary>..click to see authorization code grant..</summary>
 
-The authorization code is obtained by using an authorization server as an intermediary between the client and resource owner.  Instead of requesting authorization directly from the resource owner, the client directs the resource owner to an authorization server. 
+The *authorization code* is obtained by using an *authorization server* as an intermediary between the *client* and *resource owner*.  
 
-You can find the URL for the OAuth authorization endpoint in the API provider’s documentation. 
+You can find the URL for the OAuth *authorization endpoint* in the API provider’s documentation. 
 
 You will need to specify a few query parameters with that link:
-    - *client_id*
-    - *redirect_url*
-    - *response_type* should be *code*
-    - *scope*
-    - *state:* A unique value used by your application in order to prevent cross-site request forgery (CSRF) attacks on your implementation. The value should be a random unique string for this particular request, unguessable and kept secret in the client.
+- **client_id**
+- **redirect_url**
+- **response_type** should be **code**
+- **scope**
+- **state:** A unique value to prevent cross-site request forgery (CSRF) attacks. should be a random unique string for this particular request.
 
-If all request parameters are valid and the user approves the data access request, the user will be redirected back to the application at the URL specified as the *redirect_uri* with the authorization code (in the URL as the *code* query parameter) and state (he value of the *state* parameter passed in the initial request to the authorization server: *http://www.example.com/oauth_callback?code=ABC1234&state=XYZ5678*
+If successful, the user will be redirected back to the application at the URL specified as the **redirect_uri** with the authorization code (in the URL as the **code** query parameter) and state (the value of the **state** parameter passed in the initial request to the authorization server): *http://www.example.com/oauth_callback?code=ABC1234&state=XYZ5678*
 
-Before directing the resource owner back to the client with the authorization code, the authorization server authenticates the resource owner and obtains authorization.  Because the resource owner only authenticates with the authorization server, the resource owner's credentials are never shared with the client.
+Because the *resource owner* only authenticates with the *authorization server*, the *resource owner*'s credentials are never shared with the *client*.
 
-Exchange the *code* for an OAuth access token. A client library for OAuth does this automatically. Otherwise, you’ll need to make a HTTP POST request (needs to be authenticated using the *client_id* and *client_secret* --  include a HTTP Basic *Authorization* header as **Authorization: Basic Base64($CLIENT_ID:$CLIENT_SECRET)**) to the token endpoint with following parameters:
-        - *code*
-        - *redirect_uri* 
-        - *grant_type:* should be *authorization_code*
+Exchange the **code** for an *access token*. A client library for OAuth does this automatically. Otherwise, make an HTTP POST request. It should be authenticated by including an HTTP Basic *Authorization* header as **Authorization: Basic Base64($CLIENT_ID:$CLIENT_SECRET)**
 
-If successful, the authorization server will issue an **access_token** (short-lived). **token_type** is *bearer* (mostly). Token has a remaining life time (sec), **expires_in**. **refresh_token** (long-lived) is used to acquire a new access token after the current one expires.
+The HTTP post request should use following parameters:
 
-The authorization code provides a few important security benefits, such as the ability to authenticate the client, as well as the transmission of the access token directly to the client without passing it through the resource owner's user-agent and potentially exposing it to others, including the resource owner.
+- *code*
+- *redirect_uri* 
+- *grant_type:* should be *authorization_code*
+
+If successful, the authorization server will issue an **access_token** (short-lived).
+
+**token_type** is *bearer* (mostly). 
+
+Token has a remaining life time (sec), **expires_in**. 
+
+**refresh_token** (long-lived) is used to acquire a new access token after the current one expires.
 </details>
 
 ### [Client Credentials:](https://tools.ietf.org/html/rfc6749#section-1.3.4 "Client Credentials")
