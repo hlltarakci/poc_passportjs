@@ -148,6 +148,14 @@ The preferred way of authorizing requests is by sending the *access_token* in a 
 *refresh_token* parameter can be used to obtain a new access token.
 </details>
 
+## [OpenID Connect (OIDC)](http://openid.net/connect/ "OpenID Connect")
+
+[*OpenID Connect* has been developed by extending *OAuth 2.0*.](https://medium.com/@darutk/diagrams-of-all-the-openid-connect-flows-6968e3990660 "Diagrams of All The OpenID Connect Flows")
+
+*OAuth 2.0* is a specification as to how to issue **access_token**, whereas *OpenID Connect* is a specification as to how to issue **id_token** (from *UserInfo* endpoint of the OpenID provider).
+
+[OpenID Connect is an increasingly common authentication protocol: when an app prompts you to authenticate using your Facebook or Google+ credentials, the app is probably using OpenID Connect.](https://developers.onelogin.com/openid-connect "OIDC Overview")
+
 # PART B: PRACTICE - [PassportJS](http://www.passportjs.org/ "PassportJS")
 Passport is Express-compatible authentication middleware for Node.js. 
 
