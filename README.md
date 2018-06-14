@@ -90,6 +90,8 @@ The HTTP post request should use following parameters:
 - *redirect_uri* 
 - *grant_type:* should be *authorization_code*
 
+**[Access Token Response:](https://tools.ietf.org/html/rfc6749#section-4.1.4 "Authorization Code Access Token Response")**
+
 If successful, the authorization server will issue an **access_token** (short-lived).
 
 **token_type** is *bearer* (mostly). 
@@ -104,7 +106,21 @@ Token has a remaining life time (sec), **expires_in**.
 <details>
 <summary>..click to see client credentials grant..</summary>
 
-Client credentials are used as an authorization grant typically when the client is acting on its own behalf (the client is also the resource owner) or is requesting access to protected resources based on an authorization previously arranged with the authorization server.
+*Client credentials* are used as an authorization grant typically when the *client* is acting on its own behalf (the *client* is also the *resource owner*) or is requesting access to protected resources based on an authorization previously arranged with the *authorization server*.
+
+You can find the *authorization server*’s token URL in the API provider’s documentation. 
+
+The required POST parameters:
+
+- **grant_type:** should be **client_credentials**
+- **client_id**
+- **client_secret**
+
+**[Access Token Response:](https://tools.ietf.org/html/rfc6749#section-4.4.3 "Client Credentials Access Token Response")**
+If successful, an **access_token** is returned to
+the client.
+
+The *client credentials* flow typically provides a long-lived **access_token**, does not issue **refresh token**., Simply ask for a new **access_token** when expired.
 </details>
 
 ### [Implicit](https://tools.ietf.org/html/rfc6749#section-1.3.2 "Implicit")
