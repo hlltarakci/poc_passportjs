@@ -64,6 +64,9 @@ The end goal of using OAuth is the same: you’re trying to obtain an OAuth acce
 
 The core OAuth 2.0 protocol defines four primary *grant types* used for obtaining authorization:
 ### [Authorization Code](https://tools.ietf.org/html/rfc6749#section-1.3.1 "Authorization Code")
+<details>
+<summary>..click to see authorization code grant..</summary>
+
 The authorization code is obtained by using an authorization server as an intermediary between the client and resource owner.  Instead of requesting authorization directly from the resource owner, the client directs the resource owner to an authorization server. You can find the URL for the OAuth authorization endpoint in the API provider’s documentation. You will need to specify a few query parameters with that link:
     - *client_id*
     - *redirect_url*
@@ -83,23 +86,40 @@ Exchange the *code* for an OAuth access token. A client library for OAuth does t
 If successful, the authorization server will issue an **access_token** (short-lived). **token_type** is *bearer* (mostly). Token has a remaining life time (sec), **expires_in**. **refresh_token** (long-lived) is used to acquire a new access token after the current one expires.
 
 The authorization code provides a few important security benefits, such as the ability to authenticate the client, as well as the transmission of the access token directly to the client without passing it through the resource owner's user-agent and potentially exposing it to others, including the resource owner.
+</details>
 
 ### [Client Credentials:](https://tools.ietf.org/html/rfc6749#section-1.3.4 "Client Credentials")
 
+<details>
+<summary>..click to see client credentials grant..</summary>
+
 Client credentials are used as an authorization grant typically when the client is acting on its own behalf (the client is also the resource owner) or is requesting access to protected resources based on an authorization previously arranged with the authorization server.
+</details>
 
 ### [Implicit](https://tools.ietf.org/html/rfc6749#section-1.3.2 "Implicit")
 
+<details>
+<summary>..click to see implicit grant..</summary>
+
 [It is generally not recommended to use the implicit flow (and some servers prohibit this flow entirely)](https://oauth.net/2/grant-types/implicit/ "OAuth 2.0 Implicit Grant")
+</details>
 
 ### [Password Credentials](https://tools.ietf.org/html/rfc6749#section-1.3.3 "Resource Owner Password Credentials")
 
+<details>
+<summary>..click to see password credentials grant..</summary>
+
 The credentials should only be used when there is a high degree of trust between the resource owner and the client (e.g., the client is part of the device operating system or a highly privileged application), and when other authorization grant types are not available (such as an authorization code).
+</details>
 
 ### Calling the API
 
+<details>
+<summary>..click to see how to call API..</summary>
+
 The preferred way of authorizing requests is by sending the *access_token* in a HTTP *Authorization* header. When the *access_token* expires, the
 *refresh_token* parameter can be used to obtain a new access token.
+</details>
 
 # PART B: PRACTICE - [PassportJS](http://www.passportjs.org/ "PassportJS")
 Passport is Express-compatible authentication middleware for Node.js. 
