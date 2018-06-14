@@ -52,10 +52,19 @@ The bearer token is normally some kind of cryptic value created by the authentic
 
 [Online tools](https://www.jsonwebtoken.io/ "Encode or Decode JWTs") are available to encode/decode JSON web tokens.
 
+The end goal of using OAuth is the same: you’re trying to obtain an OAuth access token that your application can use to perform API requests on behalf of a user or the application itself. Send the access token in a *HTTP **Authorization** header*
+
 ## [Authorization Flows](https://www.amazon.co.uk/Getting-Started-OAuth-Ryan-Boyd/dp/1449311601 "Book: Getting Started with OAuth 2.0, by Ryan Boyd")
 
+The core OAuth 2.0 protocol defines four primary *grant types* used for obtaining authorization:
+- ***[Authorization Code:](https://tools.ietf.org/html/rfc6749#section-1.3.1 "Authorization Code")*** The authorization code is obtained by using an authorization server as an intermediary between the client and resource owner.  Instead of requesting authorization directly from the resource owner, the client directs the resource owner to an authorization server, which in turn directs the resource owner back to the client with the authorization code.
 
+    Before directing the resource owner back to the client with the authorization code, the authorization server authenticates the resource owner and obtains authorization.  Because the resource owner only authenticates with the authorization server, the resource owner's credentials are never shared with the client.
 
+    The authorization code provides a few important security benefits, such as the ability to authenticate the client, as well as the transmission of the access token directly to the client without passing it through the resource owner's user-agent and potentially exposing it to others, including the resource owner.
+- ***[Client Credentials:](https://tools.ietf.org/html/rfc6749#section-1.3.4 "Client Credentials")*** Client credentials are used as an authorization grant typically when the client is acting on its own behalf (the client is also the resource owner) or is requesting access to protected resources based on an authorization previously arranged with the authorization server.
+- ***[Implicit](https://tools.ietf.org/html/rfc6749#section-1.3.2 "Implicit")*** [It is generally not recommended to use the implicit flow (and some servers prohibit this flow entirely)](https://oauth.net/2/grant-types/implicit/ "OAuth 2.0 Implicit Grant")
+- ***[Password Credentials](https://tools.ietf.org/html/rfc6749#section-1.3.3 "Resource Owner Password Credentials")*** The credentials should only be used when there is a high degree of trust between the resource owner and the client (e.g., the client is part of the device operating system or a highly privileged application), and when other authorization grant types are not available (such as an authorization code).
 
 # PART B: PRACTICE - [PassportJS](http://www.passportjs.org/ "PassportJS")
 Passport is Express-compatible authentication middleware for Node.js. 
