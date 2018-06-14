@@ -6,6 +6,9 @@
 
 ##  [Terminology](https://www.amazon.co.uk/Getting-Started-OAuth-Ryan-Boyd/dp/1449311601 "Book: Getting Started with OAuth 2.0, by Ryan Boyd")
 
+<details>
+<summary>..click to see terminology..</summary>
+
 **Authentication:** Authentication is the process of verifying the identity of a user—knowing that the user is who they claim to be.
 
 **Federated Authentication:** Although many applications have their own system of accounts (including usernames
@@ -55,6 +58,7 @@ The bearer token is normally some kind of cryptic value created by the authentic
 [Online tools](https://www.jsonwebtoken.io/ "Encode or Decode JWTs") are available to encode/decode JSON web tokens.
 
 The end goal of using OAuth is the same: you’re trying to obtain an OAuth access token that your application can use to perform API requests on behalf of a user or the application itself. Send the access token in a *HTTP **Authorization** header*
+</details>
 
 ## [Authorization Flows](https://www.amazon.co.uk/Getting-Started-OAuth-Ryan-Boyd/dp/1449311601 "Book: Getting Started with OAuth 2.0, by Ryan Boyd")
 
