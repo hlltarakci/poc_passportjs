@@ -67,7 +67,11 @@ The core OAuth 2.0 protocol defines four primary *grant types* used for obtainin
 <details>
 <summary>..click to see authorization code grant..</summary>
 
-The authorization code is obtained by using an authorization server as an intermediary between the client and resource owner.  Instead of requesting authorization directly from the resource owner, the client directs the resource owner to an authorization server. You can find the URL for the OAuth authorization endpoint in the API provider’s documentation. You will need to specify a few query parameters with that link:
+The authorization code is obtained by using an authorization server as an intermediary between the client and resource owner.  Instead of requesting authorization directly from the resource owner, the client directs the resource owner to an authorization server. 
+
+You can find the URL for the OAuth authorization endpoint in the API provider’s documentation. 
+
+You will need to specify a few query parameters with that link:
     - *client_id*
     - *redirect_url*
     - *response_type* should be *code*
