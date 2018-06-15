@@ -238,11 +238,11 @@ app.post('/login',
 ## POC Content
 This POC provides:
 
-### [Local Strategy Example]("examples/localStrategy")
+### [Local Strategy Example](examples/localStrategy)
 
-### [Federated Authentication Example]("examples/federatedAuthentication")
+### [Federated Authentication Example](examples/federatedAuthentication)
 
-### [Federated Authentication on Azure (Azure Active Directory) Example]("examples/federatedAuthenticationOnAzure")
+### [Federated Authentication on Azure (Azure Active Directory) Example](examples/federatedAuthenticationOnAzure)
 
-### [Fast Token Library Example]("examples/fastTokenLibrary")
+### [Fast Token Library Example](examples/fastTokenLibrary)
 
