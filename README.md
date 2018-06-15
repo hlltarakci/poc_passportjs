@@ -157,5 +157,82 @@ The preferred way of authorizing requests is by sending the *access_token* in a 
 [OpenID Connect is an increasingly common authentication protocol: when an app prompts you to authenticate using your Facebook or Google+ credentials, the app is probably using OpenID Connect.](https://developers.onelogin.com/openid-connect "OIDC Overview")
 
 # PART B: PRACTICE - [PassportJS](http://www.passportjs.org/ "PassportJS")
-Passport is Express-compatible authentication middleware for Node.js. 
+[Passport is Express-compatible authentication middleware for Node.js.](https://github.com/jaredhanson/passport "PassportJS Github Repo")
+
+It is designed to serve a singular purpose: authenticate requests.
+
+Each application has unique authentication requirements. Authentication mechanisms, known as *strategies*, are packaged as individual modules. Applications can choose which strategies to employ.
+
+Passport does not mount routes or assume any particular database schema, which maximizes flexibility and allows application-level decisions to be made by the developer. 
+
+The API is simple: you provide Passport a request to authenticate, and Passport provides hooks for controlling what occurs when authentication succeeds or fails.
+
+## How to Use
+<details>
+<summary>..click to see usage..</summary>
+
+*Strategies* must be configured prior to using them in a route:
+
+``` js
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+```
+
+For persistent login *sessions*,the authenticated user must be *serialized* to the session, and *deserialized* when subsequent requests are made.
+
+``` js
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+```
+
+To use Passport in an Express, configure it with the required **passport.initialize()** middleware. If your application uses persistent login *sessions* (recommended, but not required), **passport.session()** middleware must also be used.
+
+``` js
+var app = express();
+app.use(require('serve-static')(__dirname + '/../../public'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+```
+
+**authenticate()** function is used as route middleware to authenticate requests.
+
+``` js
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+```
+</details>
+
+## [Examples](https://github.com/jaredhanson/passport#examples "Example Tutors")
+<details>
+<summary>..click to see example tutorial links..</summary>
+
+[User Authentication with Passport and Express 4](http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/ "User Authentication with Passport and Express 4") / [Code](https://github.com/mjhea0/passport-local-express4)
+
+[Social Authentication in Node.js with Passport](http://mherman.org/blog/2015/09/26/social-authentication-in-node-dot-js-with-passport/ "Social Authentication in Node.js with Passport") / [Code](https://github.com/mjhea0/passport-social-auth)
+
+[Express 4.x app using Passport for authentication with username and password](https://github.com/hlltarakci/express-4.x-local-example "Code for Express 4.x app using Passport for authentication with username and password")
+
+</details>
+
 
