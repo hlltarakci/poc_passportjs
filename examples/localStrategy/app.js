@@ -3,9 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// require passport
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+
+// require mongoose
+var mongoose = require('mongoose');
+var User = require('./models/user');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+// configure strategy
+passport.use(new LocalStrategy(User.authenticate()));
+
+// serialize/deserialize user for session persistence
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// connect db
+mongoose.connect('mongodb://localhost/localStrategyExample');
 
 var app = express();
 
@@ -17,6 +35,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(flash());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
