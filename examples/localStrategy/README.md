@@ -21,14 +21,14 @@ npm install
 
 ## ODM: [Mongoose](http://mongoosejs.com/ "Mongoose")
 ``` bash
-npm install mongoose -save
+npm install mongoose --save
 ```
 Add [**User**](models/user.js)
 
 ## Passport and Local Strategy
 ```  bash
-npm install passport passport-local passport-local-mongoose connect-flash -save
-npm intall express-session -save
+npm install passport passport-local passport-local-mongoose connect-flash --save
+npm install express-session --save
 ```
 
 ## [app.js](app.js) - mongoose support
