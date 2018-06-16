@@ -2,7 +2,7 @@
 
 In this demonstration, an express 4.x skeleton project is equipped with passport js local strategy. Below headings provide steps done to make it work. 
 
-You can examine [the commit]("https://github.com/hlltarakci/poc_passportjs/commit/c091c21b10d6549a8d6fd4c33e0b561b179fe1ae?diff=split").
+You can examine [the commit](https://github.com/hlltarakci/poc_passportjs/commit/c091c21b10d6549a8d6fd4c33e0b561b179fe1ae?diff=split).
 
 For more about theory, please [see](https://github.com/hlltarakci/poc_passportjs).
 
