@@ -235,16 +235,18 @@ app.post('/login',
 
 [Social Authentication in Node.js with Passport](http://mherman.org/blog/2015/09/26/social-authentication-in-node-dot-js-with-passport/ "Social Authentication in Node.js with Passport") / [Code](https://github.com/mjhea0/passport-social-auth)
 
+[Facebook authentication strategy for Passport and Node.js](https://github.com/jaredhanson/passport-facebook "Code for Facebook authentication strategy for Passport and Node.js")
+
+[OpenId Connect client examples](https://github.com/hlltarakci/onelogin-oidc-node "Code for OpenId Connect client examples")
+
 </details>
 
 ## POC Content
 This POC provides:
 
-### [Local Strategy Example](examples/localStrategy)
+- [x] [Local Strategy Example](examples/localStrategy)
 
-### [Federated Authentication Example](examples/federatedAuthentication)
+- [ ] [Federated Authentication on Azure (Azure Active Directory) Example](examples/federatedAuthenticationOnAzure)
 
-### [Federated Authentication on Azure (Azure Active Directory) Example](examples/federatedAuthenticationOnAzure)
-
-### [Fast Token Library Example](examples/fastTokenLibrary)
+- [ ] [Fast Token Library Example](examples/fastTokenLibrary)
 
